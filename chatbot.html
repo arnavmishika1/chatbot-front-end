@@ -52,31 +52,33 @@
         );
       }
 
-      const app = (
-        <>
-          <ChatInput />
-          <ChatMessage
-            message="hello chatbot"
-            sender="user"
-          />
-          <ChatMessage
-            message="Hello! How can I help you?"
-            sender="robot"
-          />
-          <ChatMessage
-            message="can you get me todays date?"
-            sender="user"
-          />
-          <ChatMessage
-            message="Today is October 14"
-            sender="robot"
-          />
-        </>
-      );
+      function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMessage
+              message="hello chatbot"
+              sender="user"
+            />
+            <ChatMessage
+              message="Hello! How can I help you?"
+              sender="robot"
+            />
+            <ChatMessage
+              message="can you get me todays date?"
+              sender="user"
+            />
+            <ChatMessage
+              message="Today is October 14"
+              sender="robot"
+            />
+          </>
+        );
+      }
 
       const container = document.querySelector('.js-container');
       const root = ReactDOM.createRoot(container);
-      root.render(app);
+      root.render(<App></App>);
     </script>
   </body>
 </html>
