@@ -52,6 +52,10 @@
         );
       }
 
+      function sendMessage() {
+        console.log('Message sent');
+      }
+
       function ChatMessages() {
         const chatMessages = [{
           message: 'hello chatbot',
@@ -73,6 +77,8 @@
 
         return (
           <>
+            <button onClick={sendMessage}>Send Message</button>
+
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
