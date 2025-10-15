@@ -52,7 +52,7 @@
         );
       }
 
-      function App() {
+      function ChatMessages() {
         const chatMessages = [{
           message: 'hello chatbot',
           sender: 'user',
@@ -73,7 +73,6 @@
 
         return (
           <>
-            <ChatInput />
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
@@ -83,6 +82,15 @@
                 />
               );
             })}
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMessages />
           </>
         );
       }
