@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { Chatbot } from 'supersimpledev';
+import RobotImageProfile from './assets/robot.png';
+import UserImageProfile from './assets/user.png';
+import LoadingMessageImage from './assets/loading-spinner.gif';
 import './App.css'
 
 function ChatInput({ chatMessages, setChatMessages }) {
@@ -34,7 +37,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
       // Another solution is to add the Loading... message
       // to newChatMessages, but we have to remove it later.
       {
-        message: <img src="loading-spinner.gif" className="loading-spinner" />,
+        message: <img src={LoadingMessageImage} className="loading-spinner" />,
         sender: 'robot',
         id: crypto.randomUUID()
       }
@@ -122,13 +125,13 @@ function ChatMessage({ message, sender }) {
         : 'chat-message-robot'
     }>
       {sender === 'robot' && (
-        <img src="robot.png" className="chat-message-profile" />
+        <img src={RobotImageProfile} className="chat-message-profile" />
       )}
       <div className="chat-message-text">
         {message}
       </div>
       {sender === 'user' && (
-        <img src="user.png" className="chat-message-profile" />
+        <img src={UserImageProfile} className="chat-message-profile" />
       )}
     </div>
   );
