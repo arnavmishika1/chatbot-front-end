@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { ChatMessage } from './ChatMessage';
+import './ChatMessages.css';
 
 // To use a function as a hook, the function name must
 // start with "use".
