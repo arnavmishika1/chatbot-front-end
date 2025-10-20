@@ -78,6 +78,11 @@
         color: rgb(120, 120, 120);
         text-align: center;
       }
+
+      .loading-spinner {
+        height: 40px;
+        margin: -15px;
+      }
     </style>
   </head>
   <body>
@@ -122,7 +127,7 @@
             // Another solution is to add the Loading... message
             // to newChatMessages, but we have to remove it later.
             {
-              message: 'Loading...',
+              message: <img src="loading-spinner.gif" className="loading-spinner" />,
               sender: 'robot',
               id: crypto.randomUUID()
             }
@@ -222,15 +227,26 @@
         );
       }
 
-      function ChatMessages({ chatMessages }) {
-        const chatMessagesRef = React.useRef(null);
-
+      // To use a function as a hook, the function name must
+      // start with "use".
+      function useAutoScroll(dependencies) {
+        // It's highly recommend to rename this to something
+        // more generic like containerRef. This will make the
+        // code make more sense if we ever reuse this code in
+        // other components.
+        const containerRef = React.useRef(null);
         React.useEffect(() => {
-          const containerElem = chatMessagesRef.current;
+          const containerElem = containerRef.current;
           if(containerElem) {
             containerElem.scrollTop = containerElem.scrollHeight;
           }
-        }, [chatMessages]);
+        }, dependencies);
+
+        return containerRef;
+      }
+
+      function ChatMessages({ chatMessages }) {
+        const chatMessagesRef = useAutoScroll([chatMessages]);
         
         return (
           <div className="chat-messages-container"
