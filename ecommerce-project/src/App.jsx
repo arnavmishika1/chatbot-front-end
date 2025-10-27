@@ -8,8 +8,12 @@ import { TrackingPage } from './pages/TrackingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import './App.css'
 
+// window.axios = axios;
+
 function App() {
   const [cart, setCart] = useState([]);
+
+  // console.log(axios.post('api/reset'));
 
   const loadCart = async () => {
     const response = await axios.get('/api/cart-items?expand=product');
