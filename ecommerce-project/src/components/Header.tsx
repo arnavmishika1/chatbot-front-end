@@ -1,12 +1,20 @@
 import { useState } from 'react';
-import { Link, NavLink, useNavigate, useSearchParams } from 'react-router';
+import { NavLink, useNavigate, useSearchParams } from 'react-router';
 import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import CartIcon from '../assets/images/icons/cart-icon.png';
 import './Header.css';
 
-export function Header({ cart }) {
+type HeaderProps = {
+  cart: {
+    productId: string;
+    quantity: number;
+    deliveryOptionId: string;
+  }[];
+};
+
+export function Header({ cart }: HeaderProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -18,13 +26,14 @@ export function Header({ cart }) {
   // it will use a default value of ''.
   const [search, setSearch] = useState(searchText || '');
 
-  const updatingSearchInput = (event) => {
+  const updatingSearchInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearch(event.target.value);
   };
 
-  const searchProducts = () => {
-    navigate(`/?search=${search}`)
-  }
+  const searchProducts = (event?: React.MouseEvent<HTMLButtonElement>): void => {
+    if (event) event.preventDefault();
+    navigate(`/?search=${search}`);
+  };
 
   let totalQuantity = 0;
 
